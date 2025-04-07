@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GestiónTareas" Class="GestionTareasDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.Autenticacion" Member="Autenticacion">
+    <Type Name="Autenticacion">
+      <Column Name="ID_sesion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Token_sesion" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="Fecha_expiracion" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Usuarios_Autenticacion" Member="Usuarios" ThisKey="ID_usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Calendario" Member="Calendario">
+    <Type Name="Calendario">
+      <Column Name="ID_Calendario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Usuarios_Calendario" Member="Usuarios" ThisKey="ID_Usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Listas" Member="Listas">
+    <Type Name="Listas">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Descripción" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Listas_Tareas" Member="Tareas" ThisKey="ID" OtherKey="id_lista" Type="Tareas" />
+      <Association Name="Usuarios_Listas" Member="Usuarios" ThisKey="ID_Usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reconocimiento" Member="Reconocimiento">
+    <Type Name="Reconocimiento">
+      <Column Name="ID_reconocimiento" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_logro" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="Usuarios_Reconocimiento" Member="Usuarios" ThisKey="ID_usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Recordatorio" Member="Recordatorio">
+    <Type Name="Recordatorio">
+      <Column Name="ID_Recordatorio" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Tarea" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_aviso" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tareas_Recordatorio" Member="Tareas" ThisKey="ID_Tarea" OtherKey="ID" Type="Tareas" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tareas" Member="Tareas">
+    <Type Name="Tareas">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="descripcion" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="fecha_creacion" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fecha_limite" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="estado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="prioridad" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_lista" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Tareas_Recordatorio" Member="Recordatorio" ThisKey="ID" OtherKey="ID_Tarea" Type="Recordatorio" />
+      <Association Name="Listas_Tareas" Member="Listas" ThisKey="id_lista" OtherKey="ID" Type="Listas" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Usuarios_Tareas" Member="Usuarios" ThisKey="id_usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuarios">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Correo_Electronico" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasenia" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Registro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Fecha_Actualizacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Usuarios_Autenticacion" Member="Autenticacion" ThisKey="ID" OtherKey="ID_usuario" Type="Autenticacion" />
+      <Association Name="Usuarios_Calendario" Member="Calendario" ThisKey="ID" OtherKey="ID_Usuario" Type="Calendario" />
+      <Association Name="Usuarios_Listas" Member="Listas" ThisKey="ID" OtherKey="ID_Usuario" Type="Listas" />
+      <Association Name="Usuarios_Reconocimiento" Member="Reconocimiento" ThisKey="ID" OtherKey="ID_usuario" Type="Reconocimiento" />
+      <Association Name="Usuarios_Tareas" Member="Tareas" ThisKey="ID" OtherKey="id_usuario" Type="Tareas" />
+    </Type>
+  </Table>
+</Database>
