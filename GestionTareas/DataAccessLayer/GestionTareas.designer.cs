@@ -33,9 +33,6 @@ namespace GestionTareas.DataAccessLayer
     partial void InsertAutenticacion(Autenticacion instance);
     partial void UpdateAutenticacion(Autenticacion instance);
     partial void DeleteAutenticacion(Autenticacion instance);
-    partial void InsertListas(Listas instance);
-    partial void UpdateListas(Listas instance);
-    partial void DeleteListas(Listas instance);
     partial void InsertReconocimiento(Reconocimiento instance);
     partial void UpdateReconocimiento(Reconocimiento instance);
     partial void DeleteReconocimiento(Reconocimiento instance);
@@ -51,14 +48,15 @@ namespace GestionTareas.DataAccessLayer
     partial void InsertCalendario(Calendario instance);
     partial void UpdateCalendario(Calendario instance);
     partial void DeleteCalendario(Calendario instance);
+    partial void InsertListas(Listas instance);
+    partial void UpdateListas(Listas instance);
+    partial void DeleteListas(Listas instance);
         #endregion
-
         public GestionTareasDataContext() :
-  base(global::System.Configuration.ConfigurationManager.ConnectionStrings["GestiónTareasConnectionString"].ConnectionString, mappingSource)
+    base(global::System.Configuration.ConfigurationManager.ConnectionStrings["GestiónTareasConnectionString"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
-
         public GestionTareasDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
@@ -88,14 +86,6 @@ namespace GestionTareas.DataAccessLayer
 			get
 			{
 				return this.GetTable<Autenticacion>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Listas> Listas
-		{
-			get
-			{
-				return this.GetTable<Listas>();
 			}
 		}
 		
@@ -136,6 +126,14 @@ namespace GestionTareas.DataAccessLayer
 			get
 			{
 				return this.GetTable<Calendario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Listas> Listas
+		{
+			get
+			{
+				return this.GetTable<Listas>();
 			}
 		}
 	}
@@ -312,209 +310,6 @@ namespace GestionTareas.DataAccessLayer
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Listas")]
-	public partial class Listas : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID;
-		
-		private string _Nombre;
-		
-		private string _Descripción;
-		
-		private int _ID_Usuario;
-		
-		private EntitySet<Tareas> _Tareas;
-		
-		private EntityRef<Usuarios> _Usuarios;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIDChanging(int value);
-    partial void OnIDChanged();
-    partial void OnNombreChanging(string value);
-    partial void OnNombreChanged();
-    partial void OnDescripciónChanging(string value);
-    partial void OnDescripciónChanged();
-    partial void OnID_UsuarioChanging(int value);
-    partial void OnID_UsuarioChanged();
-    #endregion
-		
-		public Listas()
-		{
-			this._Tareas = new EntitySet<Tareas>(new Action<Tareas>(this.attach_Tareas), new Action<Tareas>(this.detach_Tareas));
-			this._Usuarios = default(EntityRef<Usuarios>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this.OnIDChanging(value);
-					this.SendPropertyChanging();
-					this._ID = value;
-					this.SendPropertyChanged("ID");
-					this.OnIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string Nombre
-		{
-			get
-			{
-				return this._Nombre;
-			}
-			set
-			{
-				if ((this._Nombre != value))
-				{
-					this.OnNombreChanging(value);
-					this.SendPropertyChanging();
-					this._Nombre = value;
-					this.SendPropertyChanged("Nombre");
-					this.OnNombreChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripción", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string Descripción
-		{
-			get
-			{
-				return this._Descripción;
-			}
-			set
-			{
-				if ((this._Descripción != value))
-				{
-					this.OnDescripciónChanging(value);
-					this.SendPropertyChanging();
-					this._Descripción = value;
-					this.SendPropertyChanged("Descripción");
-					this.OnDescripciónChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Usuario", DbType="Int NOT NULL")]
-		public int ID_Usuario
-		{
-			get
-			{
-				return this._ID_Usuario;
-			}
-			set
-			{
-				if ((this._ID_Usuario != value))
-				{
-					if (this._Usuarios.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnID_UsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Usuario = value;
-					this.SendPropertyChanged("ID_Usuario");
-					this.OnID_UsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Listas_Tareas", Storage="_Tareas", ThisKey="ID", OtherKey="id_lista")]
-		public EntitySet<Tareas> Tareas
-		{
-			get
-			{
-				return this._Tareas;
-			}
-			set
-			{
-				this._Tareas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Listas", Storage="_Usuarios", ThisKey="ID_Usuario", OtherKey="ID", IsForeignKey=true)]
-		public Usuarios Usuarios
-		{
-			get
-			{
-				return this._Usuarios.Entity;
-			}
-			set
-			{
-				Usuarios previousValue = this._Usuarios.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuarios.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuarios.Entity = null;
-						previousValue.Listas.Remove(this);
-					}
-					this._Usuarios.Entity = value;
-					if ((value != null))
-					{
-						value.Listas.Add(this);
-						this._ID_Usuario = value.ID;
-					}
-					else
-					{
-						this._ID_Usuario = default(int);
-					}
-					this.SendPropertyChanged("Usuarios");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Tareas(Tareas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Listas = this;
-		}
-		
-		private void detach_Tareas(Tareas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Listas = null;
 		}
 	}
 	
@@ -894,9 +689,9 @@ namespace GestionTareas.DataAccessLayer
 		
 		private EntitySet<Recordatorio> _Recordatorio;
 		
-		private EntityRef<Listas> _Listas;
-		
 		private EntityRef<Usuarios> _Usuarios;
+		
+		private EntityRef<Listas> _Listas;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -925,8 +720,8 @@ namespace GestionTareas.DataAccessLayer
 		public Tareas()
 		{
 			this._Recordatorio = new EntitySet<Recordatorio>(new Action<Recordatorio>(this.attach_Recordatorio), new Action<Recordatorio>(this.detach_Recordatorio));
-			this._Listas = default(EntityRef<Listas>);
 			this._Usuarios = default(EntityRef<Usuarios>);
+			this._Listas = default(EntityRef<Listas>);
 			OnCreated();
 		}
 		
@@ -1131,40 +926,6 @@ namespace GestionTareas.DataAccessLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Listas_Tareas", Storage="_Listas", ThisKey="id_lista", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Listas Listas
-		{
-			get
-			{
-				return this._Listas.Entity;
-			}
-			set
-			{
-				Listas previousValue = this._Listas.Entity;
-				if (((previousValue != value) 
-							|| (this._Listas.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Listas.Entity = null;
-						previousValue.Tareas.Remove(this);
-					}
-					this._Listas.Entity = value;
-					if ((value != null))
-					{
-						value.Tareas.Add(this);
-						this._id_lista = value.ID;
-					}
-					else
-					{
-						this._id_lista = default(int);
-					}
-					this.SendPropertyChanged("Listas");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Tareas", Storage="_Usuarios", ThisKey="id_usuario", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Usuarios Usuarios
 		{
@@ -1195,6 +956,40 @@ namespace GestionTareas.DataAccessLayer
 						this._id_usuario = default(int);
 					}
 					this.SendPropertyChanged("Usuarios");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Listas_Tareas", Storage="_Listas", ThisKey="id_lista", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Listas Listas
+		{
+			get
+			{
+				return this._Listas.Entity;
+			}
+			set
+			{
+				Listas previousValue = this._Listas.Entity;
+				if (((previousValue != value) 
+							|| (this._Listas.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Listas.Entity = null;
+						previousValue.Tareas.Remove(this);
+					}
+					this._Listas.Entity = value;
+					if ((value != null))
+					{
+						value.Tareas.Add(this);
+						this._id_lista = value.ID;
+					}
+					else
+					{
+						this._id_lista = default(int);
+					}
+					this.SendPropertyChanged("Listas");
 				}
 			}
 		}
@@ -1252,13 +1047,13 @@ namespace GestionTareas.DataAccessLayer
 		
 		private EntitySet<Autenticacion> _Autenticacion;
 		
-		private EntitySet<Listas> _Listas;
-		
 		private EntitySet<Reconocimiento> _Reconocimiento;
 		
 		private EntitySet<Tareas> _Tareas;
 		
 		private EntitySet<Calendario> _Calendario;
+		
+		private EntitySet<Listas> _Listas;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -1281,10 +1076,10 @@ namespace GestionTareas.DataAccessLayer
 		public Usuarios()
 		{
 			this._Autenticacion = new EntitySet<Autenticacion>(new Action<Autenticacion>(this.attach_Autenticacion), new Action<Autenticacion>(this.detach_Autenticacion));
-			this._Listas = new EntitySet<Listas>(new Action<Listas>(this.attach_Listas), new Action<Listas>(this.detach_Listas));
 			this._Reconocimiento = new EntitySet<Reconocimiento>(new Action<Reconocimiento>(this.attach_Reconocimiento), new Action<Reconocimiento>(this.detach_Reconocimiento));
 			this._Tareas = new EntitySet<Tareas>(new Action<Tareas>(this.attach_Tareas), new Action<Tareas>(this.detach_Tareas));
 			this._Calendario = new EntitySet<Calendario>(new Action<Calendario>(this.attach_Calendario), new Action<Calendario>(this.detach_Calendario));
+			this._Listas = new EntitySet<Listas>(new Action<Listas>(this.attach_Listas), new Action<Listas>(this.detach_Listas));
 			OnCreated();
 		}
 		
@@ -1421,19 +1216,6 @@ namespace GestionTareas.DataAccessLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Listas", Storage="_Listas", ThisKey="ID", OtherKey="ID_Usuario")]
-		public EntitySet<Listas> Listas
-		{
-			get
-			{
-				return this._Listas;
-			}
-			set
-			{
-				this._Listas.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Reconocimiento", Storage="_Reconocimiento", ThisKey="ID", OtherKey="ID_usuario")]
 		public EntitySet<Reconocimiento> Reconocimiento
 		{
@@ -1473,6 +1255,19 @@ namespace GestionTareas.DataAccessLayer
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Listas", Storage="_Listas", ThisKey="ID", OtherKey="ID_Usuario")]
+		public EntitySet<Listas> Listas
+		{
+			get
+			{
+				return this._Listas;
+			}
+			set
+			{
+				this._Listas.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1500,18 +1295,6 @@ namespace GestionTareas.DataAccessLayer
 		}
 		
 		private void detach_Autenticacion(Autenticacion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuarios = null;
-		}
-		
-		private void attach_Listas(Listas entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuarios = this;
-		}
-		
-		private void detach_Listas(Listas entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuarios = null;
@@ -1548,6 +1331,18 @@ namespace GestionTareas.DataAccessLayer
 		}
 		
 		private void detach_Calendario(Calendario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuarios = null;
+		}
+		
+		private void attach_Listas(Listas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuarios = this;
+		}
+		
+		private void detach_Listas(Listas entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuarios = null;
@@ -1678,6 +1473,209 @@ namespace GestionTareas.DataAccessLayer
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Listas")]
+	public partial class Listas : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private string _Nombre;
+		
+		private string _Descripción;
+		
+		private int _ID_Usuario;
+		
+		private EntitySet<Tareas> _Tareas;
+		
+		private EntityRef<Usuarios> _Usuarios;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNombreChanging(string value);
+    partial void OnNombreChanged();
+    partial void OnDescripciónChanging(string value);
+    partial void OnDescripciónChanged();
+    partial void OnID_UsuarioChanging(int value);
+    partial void OnID_UsuarioChanged();
+    #endregion
+		
+		public Listas()
+		{
+			this._Tareas = new EntitySet<Tareas>(new Action<Tareas>(this.attach_Tareas), new Action<Tareas>(this.detach_Tareas));
+			this._Usuarios = default(EntityRef<Usuarios>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nombre", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Nombre
+		{
+			get
+			{
+				return this._Nombre;
+			}
+			set
+			{
+				if ((this._Nombre != value))
+				{
+					this.OnNombreChanging(value);
+					this.SendPropertyChanging();
+					this._Nombre = value;
+					this.SendPropertyChanged("Nombre");
+					this.OnNombreChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Descripción", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Descripción
+		{
+			get
+			{
+				return this._Descripción;
+			}
+			set
+			{
+				if ((this._Descripción != value))
+				{
+					this.OnDescripciónChanging(value);
+					this.SendPropertyChanging();
+					this._Descripción = value;
+					this.SendPropertyChanged("Descripción");
+					this.OnDescripciónChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Usuario", DbType="Int NOT NULL")]
+		public int ID_Usuario
+		{
+			get
+			{
+				return this._ID_Usuario;
+			}
+			set
+			{
+				if ((this._ID_Usuario != value))
+				{
+					if (this._Usuarios.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_UsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Usuario = value;
+					this.SendPropertyChanged("ID_Usuario");
+					this.OnID_UsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Listas_Tareas", Storage="_Tareas", ThisKey="ID", OtherKey="id_lista")]
+		public EntitySet<Tareas> Tareas
+		{
+			get
+			{
+				return this._Tareas;
+			}
+			set
+			{
+				this._Tareas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Listas", Storage="_Usuarios", ThisKey="ID_Usuario", OtherKey="ID", IsForeignKey=true)]
+		public Usuarios Usuarios
+		{
+			get
+			{
+				return this._Usuarios.Entity;
+			}
+			set
+			{
+				Usuarios previousValue = this._Usuarios.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuarios.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuarios.Entity = null;
+						previousValue.Listas.Remove(this);
+					}
+					this._Usuarios.Entity = value;
+					if ((value != null))
+					{
+						value.Listas.Add(this);
+						this._ID_Usuario = value.ID;
+					}
+					else
+					{
+						this._ID_Usuario = default(int);
+					}
+					this.SendPropertyChanged("Usuarios");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Tareas(Tareas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Listas = this;
+		}
+		
+		private void detach_Tareas(Tareas entity)
+		{
+			this.SendPropertyChanging();
+			entity.Listas = null;
 		}
 	}
 }
