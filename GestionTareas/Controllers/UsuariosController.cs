@@ -64,7 +64,7 @@ namespace GestionTareas.Controllers
                 var usuario = db.Usuarios.FirstOrDefault(u => u.Correo_Electronico == correo && u.Correo_Electronico == contrasena);
                 if (usuario != null)
                 {
-                    Session["UsuarioID"] = usuario.IdUsuario;
+                    Session["UsuarioID"] = usuario.ID;
                     Session["NombreUsuario"] = usuario.Nombre;
                     return RedirectToAction("Index", "Home");
                 }
@@ -73,6 +73,31 @@ namespace GestionTareas.Controllers
                     ViewBag.Mensaje = "Correo o contraseña incorrectos.";
                     return View();
                 }
+            }
+        }
+
+        ////////////////LOGOUT/////////////////////
+        ///
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
+        }
+
+        ////////perfil de usuario/////////////
+        ///
+
+
+        public ActionResult Perfil()
+        {
+            if (Session["UsuarioID"] == null)
+                return RedirectToAction("Login");
+
+            using (var db = new GestionTareasDataContext())
+            {
+                int id = (int)Session["UsuarioID"];
+                var usuario = db.Usuarios.FirstOrDefault(u => u.ID == id);
+                return View(usuario);
             }
         }
 
