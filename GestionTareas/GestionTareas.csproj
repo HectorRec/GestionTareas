@@ -157,6 +157,44 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Lib\static_minified\404.html" />
+    <Content Include="Lib\static_minified\404.png" />
+    <Content Include="Lib\static_minified\500.html" />
+    <Content Include="Lib\static_minified\500.png" />
+    <Content Include="Lib\static_minified\55b07f26c86c8e3d3754.svg" />
+    <Content Include="Lib\static_minified\9fad440d8ee7a949a9a9.svg" />
+    <Content Include="Lib\static_minified\basic-table.html" />
+    <Content Include="Lib\static_minified\bg.jpg" />
+    <Content Include="Lib\static_minified\blank.html" />
+    <Content Include="Lib\static_minified\buttons.html" />
+    <Content Include="Lib\static_minified\c1e38fd9e0e74ba58f7a2b77ef29fdd3.svg" />
+    <Content Include="Lib\static_minified\calendar.html" />
+    <Content Include="Lib\static_minified\charts.html" />
+    <Content Include="Lib\static_minified\chat.html" />
+    <Content Include="Lib\static_minified\compose.html" />
+    <Content Include="Lib\static_minified\datatable.html" />
+    <Content Include="Lib\static_minified\email.html" />
+    <Content Include="Lib\static_minified\f0fc8c798eac5636249c4ea287832422.svg" />
+    <Content Include="Lib\static_minified\fontawesome-webfont.svg" />
+    <Content Include="Lib\static_minified\forms.html" />
+    <Content Include="Lib\static_minified\google-maps.html" />
+    <Content Include="Lib\static_minified\index.html" />
+    <Content Include="Lib\static_minified\logo.png" />
+    <Content Include="Lib\static_minified\logo.svg" />
+    <Content Include="Lib\static_minified\main.js" />
+    <Content Include="Lib\static_minified\main.js.LICENSE.txt" />
+    <Content Include="Lib\static_minified\signin.html" />
+    <Content Include="Lib\static_minified\signup.html" />
+    <Content Include="Lib\static_minified\sort_asc.png" />
+    <Content Include="Lib\static_minified\sort_asc_disabled.png" />
+    <Content Include="Lib\static_minified\sort_both.png" />
+    <Content Include="Lib\static_minified\sort_desc.png" />
+    <Content Include="Lib\static_minified\sort_desc_disabled.png" />
+    <Content Include="Lib\static_minified\style.css" />
+    <Content Include="Lib\static_minified\test.html" />
+    <Content Include="Lib\static_minified\themify.svg" />
+    <Content Include="Lib\static_minified\ui.html" />
+    <Content Include="Lib\static_minified\vector-maps.html" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -171,6 +209,21 @@
     <None Include="DataAccessLayer\GestionTareas.dbml.layout">
       <DependentUpon>GestionTareas.dbml</DependentUpon>
     </None>
+    <Content Include="Lib\static_minified\1e59d2330b4c6deb84b3.ttf" />
+    <Content Include="Lib\static_minified\20fd1704ea223900efa9.woff2" />
+    <Content Include="Lib\static_minified\29b39089170885ae2967.woff" />
+    <Content Include="Lib\static_minified\8b43027f47b20503057d.eot" />
+    <Content Include="Lib\static_minified\9bad94440d49256265a5.eot" />
+    <Content Include="Lib\static_minified\eda8b94308c6f538f04a.ttf" />
+    <Content Include="Lib\static_minified\f691f37e57f04c152e23.woff" />
+    <Content Include="Lib\static_minified\fontawesome-webfont.eot" />
+    <Content Include="Lib\static_minified\fontawesome-webfont.ttf" />
+    <Content Include="Lib\static_minified\fontawesome-webfont.woff" />
+    <Content Include="Lib\static_minified\fontawesome-webfont.woff2" />
+    <Content Include="Lib\static_minified\FontAwesome.otf" />
+    <Content Include="Lib\static_minified\themify.eot" />
+    <Content Include="Lib\static_minified\themify.ttf" />
+    <Content Include="Lib\static_minified\themify.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -232,6 +285,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
