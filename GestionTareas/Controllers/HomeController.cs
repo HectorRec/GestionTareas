@@ -13,6 +13,7 @@ namespace GestionTareas.Controllers
     {
 
         GestionTareasDataContext DB = new GestionTareasDataContext();
+
         public ActionResult Index()
         {
             return View();

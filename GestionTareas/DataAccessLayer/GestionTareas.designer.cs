@@ -33,9 +33,6 @@ namespace GestionTareas.DataAccessLayer
     partial void InsertAutenticacion(Autenticacion instance);
     partial void UpdateAutenticacion(Autenticacion instance);
     partial void DeleteAutenticacion(Autenticacion instance);
-    partial void InsertCalendario(Calendario instance);
-    partial void UpdateCalendario(Calendario instance);
-    partial void DeleteCalendario(Calendario instance);
     partial void InsertListas(Listas instance);
     partial void UpdateListas(Listas instance);
     partial void DeleteListas(Listas instance);
@@ -51,6 +48,9 @@ namespace GestionTareas.DataAccessLayer
     partial void InsertUsuarios(Usuarios instance);
     partial void UpdateUsuarios(Usuarios instance);
     partial void DeleteUsuarios(Usuarios instance);
+    partial void InsertCalendario(Calendario instance);
+    partial void UpdateCalendario(Calendario instance);
+    partial void DeleteCalendario(Calendario instance);
         #endregion
 
         public GestionTareasDataContext() :
@@ -91,14 +91,6 @@ namespace GestionTareas.DataAccessLayer
 			}
 		}
 		
-		public System.Data.Linq.Table<Calendario> Calendario
-		{
-			get
-			{
-				return this.GetTable<Calendario>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Listas> Listas
 		{
 			get
@@ -136,6 +128,14 @@ namespace GestionTareas.DataAccessLayer
 			get
 			{
 				return this.GetTable<Usuarios>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Calendario> Calendario
+		{
+			get
+			{
+				return this.GetTable<Calendario>();
 			}
 		}
 	}
@@ -288,133 +288,6 @@ namespace GestionTareas.DataAccessLayer
 					else
 					{
 						this._ID_usuario = default(int);
-					}
-					this.SendPropertyChanged("Usuarios");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Calendario")]
-	public partial class Calendario : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID_Calendario;
-		
-		private int _ID_Usuario;
-		
-		private EntityRef<Usuarios> _Usuarios;
-		
-    #region Definiciones de métodos de extensibilidad
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_CalendarioChanging(int value);
-    partial void OnID_CalendarioChanged();
-    partial void OnID_UsuarioChanging(int value);
-    partial void OnID_UsuarioChanged();
-    #endregion
-		
-		public Calendario()
-		{
-			this._Usuarios = default(EntityRef<Usuarios>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Calendario", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID_Calendario
-		{
-			get
-			{
-				return this._ID_Calendario;
-			}
-			set
-			{
-				if ((this._ID_Calendario != value))
-				{
-					this.OnID_CalendarioChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Calendario = value;
-					this.SendPropertyChanged("ID_Calendario");
-					this.OnID_CalendarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Usuario", DbType="Int NOT NULL")]
-		public int ID_Usuario
-		{
-			get
-			{
-				return this._ID_Usuario;
-			}
-			set
-			{
-				if ((this._ID_Usuario != value))
-				{
-					if (this._Usuarios.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnID_UsuarioChanging(value);
-					this.SendPropertyChanging();
-					this._ID_Usuario = value;
-					this.SendPropertyChanged("ID_Usuario");
-					this.OnID_UsuarioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Calendario", Storage="_Usuarios", ThisKey="ID_Usuario", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Usuarios Usuarios
-		{
-			get
-			{
-				return this._Usuarios.Entity;
-			}
-			set
-			{
-				Usuarios previousValue = this._Usuarios.Entity;
-				if (((previousValue != value) 
-							|| (this._Usuarios.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Usuarios.Entity = null;
-						previousValue.Calendario.Remove(this);
-					}
-					this._Usuarios.Entity = value;
-					if ((value != null))
-					{
-						value.Calendario.Add(this);
-						this._ID_Usuario = value.ID;
-					}
-					else
-					{
-						this._ID_Usuario = default(int);
 					}
 					this.SendPropertyChanged("Usuarios");
 				}
@@ -1379,13 +1252,13 @@ namespace GestionTareas.DataAccessLayer
 		
 		private EntitySet<Autenticacion> _Autenticacion;
 		
-		private EntitySet<Calendario> _Calendario;
-		
 		private EntitySet<Listas> _Listas;
 		
 		private EntitySet<Reconocimiento> _Reconocimiento;
 		
 		private EntitySet<Tareas> _Tareas;
+		
+		private EntitySet<Calendario> _Calendario;
 		
     #region Definiciones de métodos de extensibilidad
     partial void OnLoaded();
@@ -1408,10 +1281,10 @@ namespace GestionTareas.DataAccessLayer
 		public Usuarios()
 		{
 			this._Autenticacion = new EntitySet<Autenticacion>(new Action<Autenticacion>(this.attach_Autenticacion), new Action<Autenticacion>(this.detach_Autenticacion));
-			this._Calendario = new EntitySet<Calendario>(new Action<Calendario>(this.attach_Calendario), new Action<Calendario>(this.detach_Calendario));
 			this._Listas = new EntitySet<Listas>(new Action<Listas>(this.attach_Listas), new Action<Listas>(this.detach_Listas));
 			this._Reconocimiento = new EntitySet<Reconocimiento>(new Action<Reconocimiento>(this.attach_Reconocimiento), new Action<Reconocimiento>(this.detach_Reconocimiento));
 			this._Tareas = new EntitySet<Tareas>(new Action<Tareas>(this.attach_Tareas), new Action<Tareas>(this.detach_Tareas));
+			this._Calendario = new EntitySet<Calendario>(new Action<Calendario>(this.attach_Calendario), new Action<Calendario>(this.detach_Calendario));
 			OnCreated();
 		}
 		
@@ -1548,19 +1421,6 @@ namespace GestionTareas.DataAccessLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Calendario", Storage="_Calendario", ThisKey="ID", OtherKey="ID_Usuario")]
-		public EntitySet<Calendario> Calendario
-		{
-			get
-			{
-				return this._Calendario;
-			}
-			set
-			{
-				this._Calendario.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Listas", Storage="_Listas", ThisKey="ID", OtherKey="ID_Usuario")]
 		public EntitySet<Listas> Listas
 		{
@@ -1600,6 +1460,19 @@ namespace GestionTareas.DataAccessLayer
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Calendario", Storage="_Calendario", ThisKey="ID", OtherKey="ID_Usuario")]
+		public EntitySet<Calendario> Calendario
+		{
+			get
+			{
+				return this._Calendario;
+			}
+			set
+			{
+				this._Calendario.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1627,18 +1500,6 @@ namespace GestionTareas.DataAccessLayer
 		}
 		
 		private void detach_Autenticacion(Autenticacion entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuarios = null;
-		}
-		
-		private void attach_Calendario(Calendario entity)
-		{
-			this.SendPropertyChanging();
-			entity.Usuarios = this;
-		}
-		
-		private void detach_Calendario(Calendario entity)
 		{
 			this.SendPropertyChanging();
 			entity.Usuarios = null;
@@ -1678,6 +1539,145 @@ namespace GestionTareas.DataAccessLayer
 		{
 			this.SendPropertyChanging();
 			entity.Usuarios = null;
+		}
+		
+		private void attach_Calendario(Calendario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuarios = this;
+		}
+		
+		private void detach_Calendario(Calendario entity)
+		{
+			this.SendPropertyChanging();
+			entity.Usuarios = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Calendario")]
+	public partial class Calendario : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_Calendario;
+		
+		private int _ID_Usuario;
+		
+		private EntityRef<Usuarios> _Usuarios;
+		
+    #region Definiciones de métodos de extensibilidad
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_CalendarioChanging(int value);
+    partial void OnID_CalendarioChanged();
+    partial void OnID_UsuarioChanging(int value);
+    partial void OnID_UsuarioChanged();
+    #endregion
+		
+		public Calendario()
+		{
+			this._Usuarios = default(EntityRef<Usuarios>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Calendario", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_Calendario
+		{
+			get
+			{
+				return this._ID_Calendario;
+			}
+			set
+			{
+				if ((this._ID_Calendario != value))
+				{
+					this.OnID_CalendarioChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Calendario = value;
+					this.SendPropertyChanged("ID_Calendario");
+					this.OnID_CalendarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Usuario", DbType="Int NOT NULL")]
+		public int ID_Usuario
+		{
+			get
+			{
+				return this._ID_Usuario;
+			}
+			set
+			{
+				if ((this._ID_Usuario != value))
+				{
+					if (this._Usuarios.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnID_UsuarioChanging(value);
+					this.SendPropertyChanging();
+					this._ID_Usuario = value;
+					this.SendPropertyChanged("ID_Usuario");
+					this.OnID_UsuarioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Usuarios_Calendario", Storage="_Usuarios", ThisKey="ID_Usuario", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Usuarios Usuarios
+		{
+			get
+			{
+				return this._Usuarios.Entity;
+			}
+			set
+			{
+				Usuarios previousValue = this._Usuarios.Entity;
+				if (((previousValue != value) 
+							|| (this._Usuarios.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Usuarios.Entity = null;
+						previousValue.Calendario.Remove(this);
+					}
+					this._Usuarios.Entity = value;
+					if ((value != null))
+					{
+						value.Calendario.Add(this);
+						this._ID_Usuario = value.ID;
+					}
+					else
+					{
+						this._ID_Usuario = default(int);
+					}
+					this.SendPropertyChanged("Usuarios");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

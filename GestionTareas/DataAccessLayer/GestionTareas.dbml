@@ -8,13 +8,6 @@
       <Association Name="Usuarios_Autenticacion" Member="Usuarios" ThisKey="ID_usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Calendario" Member="Calendario">
-    <Type Name="Calendario">
-      <Column Name="ID_Calendario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Usuarios_Calendario" Member="Usuarios" ThisKey="ID_Usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Listas" Member="Listas">
     <Type Name="Listas">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -68,10 +61,17 @@
       <Column Name="Fecha_Registro" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Fecha_Actualizacion" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Association Name="Usuarios_Autenticacion" Member="Autenticacion" ThisKey="ID" OtherKey="ID_usuario" Type="Autenticacion" />
-      <Association Name="Usuarios_Calendario" Member="Calendario" ThisKey="ID" OtherKey="ID_Usuario" Type="Calendario" />
       <Association Name="Usuarios_Listas" Member="Listas" ThisKey="ID" OtherKey="ID_Usuario" Type="Listas" />
       <Association Name="Usuarios_Reconocimiento" Member="Reconocimiento" ThisKey="ID" OtherKey="ID_usuario" Type="Reconocimiento" />
       <Association Name="Usuarios_Tareas" Member="Tareas" ThisKey="ID" OtherKey="id_usuario" Type="Tareas" />
+      <Association Name="Usuarios_Calendario" Member="Calendario" ThisKey="ID" OtherKey="ID_Usuario" Type="Calendario" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Calendario" Member="Calendario">
+    <Type Name="Calendario">
+      <Column Name="ID_Calendario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Usuarios_Calendario" Member="Usuarios" ThisKey="ID_Usuario" OtherKey="ID" Type="Usuarios" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
