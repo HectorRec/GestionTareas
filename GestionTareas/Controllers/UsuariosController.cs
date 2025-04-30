@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GestionTareas.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,82 +9,75 @@ namespace GestionTareas.Controllers
 {
     public class UsuariosController : Controller
     {
-        // GET: Usuarios
-        public ActionResult Index()
+        GestionTareasDataContext bd = new GestionTareasDataContext();
+        /// <summary>
+        /// ///////////////////registro de usuario
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Registro()
         {
             return View();
         }
 
-        // GET: Usuarios/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Usuarios/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Usuarios/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Registro(Usuarios nuevoUsuario)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                using (var db = new GestionTareasDataContext())
+                {
+                    var existe = db.Usuarios.Any(u => u.Correo_Electronico == nuevoUsuario.Correo_Electronico);
+                    if (existe)
+                    {
+                        ViewBag.Mensaje = "El correo ya está registrado.";
+                        return View();
+                    }
 
-                return RedirectToAction("Index");
+                    nuevoUsuario.Fecha_Registro = DateTime.Now;
+                    db.Usuarios.InsertOnSubmit(nuevoUsuario);
+                    db.SubmitChanges();
+
+                    return RedirectToAction("Login");
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(nuevoUsuario);
         }
 
-        // GET: Usuarios/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
 
-        // POST: Usuarios/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: Usuarios/Delete/5
-        public ActionResult Delete(int id)
+        ////////////////LOGIN/////////////////////
+        ///
+        [HttpGet]
+        public ActionResult Login()
         {
             return View();
         }
 
-        // POST: Usuarios/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Login(string correo, string contrasena)
         {
-            try
+            using (var db = new GestionTareasDataContext())
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
+                var usuario = db.Usuarios.FirstOrDefault(u => u.Correo_Electronico == correo && u.Correo_Electronico == contrasena);
+                if (usuario != null)
+                {
+                    Session["UsuarioID"] = usuario.IdUsuario;
+                    Session["NombreUsuario"] = usuario.Nombre;
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ViewBag.Mensaje = "Correo o contraseña incorrectos.";
+                    return View();
+                }
             }
         }
+
+
     }
+
+
 }
