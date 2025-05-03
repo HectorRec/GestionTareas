@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\GestionTareas",
+    "\\GestionTareas\\DataAccessLayer",
+    "\\GestionTareas\\Views",
+    "\\GestionTareas\\Views\\Home",
+    "\\GestionTareas\\Views\\Usuarios"
   ],
+  "SelectedNode": "\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
   "PreviewInSolutionExplorer": false
 }

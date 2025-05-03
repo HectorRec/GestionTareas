@@ -1,22 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\",
+  "WorkspaceRootPath": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Views\\Usuarios\\Login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\Views\\Usuarios\\Login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\DataAccessLayer\\GestionTareas.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\Controllers\\CalendarioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Controllers\\CalendarioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\Controllers\\CalendarioController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GestionTareas\\Views\\Home\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,53 +62,65 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CalendarioController.cs",
-              "DocumentMoniker": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\Controllers\\CalendarioController.cs",
-              "RelativeDocumentMoniker": "GestionTareas\\Controllers\\CalendarioController.cs",
-              "ToolTip": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\Controllers\\CalendarioController.cs",
-              "RelativeToolTip": "GestionTareas\\Controllers\\CalendarioController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T23:34:44.07Z",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Views\\Usuarios\\Login.cshtml",
+              "RelativeDocumentMoniker": "GestionTareas\\Views\\Usuarios\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Views\\Usuarios\\Login.cshtml",
+              "RelativeToolTip": "GestionTareas\\Views\\Usuarios\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-02T03:41:44.085Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GestionTareas.designer.cs",
-              "DocumentMoniker": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
-              "RelativeDocumentMoniker": "GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
-              "ToolTip": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
-              "RelativeToolTip": "GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "CalendarioController.cs",
+              "DocumentMoniker": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Controllers\\CalendarioController.cs",
+              "RelativeDocumentMoniker": "GestionTareas\\Controllers\\CalendarioController.cs",
+              "ToolTip": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Controllers\\CalendarioController.cs",
+              "RelativeToolTip": "GestionTareas\\Controllers\\CalendarioController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T23:32:57.589Z",
+              "WhenOpened": "2025-05-02T03:40:33.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GestionTareas.designer.cs",
+              "DocumentMoniker": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
+              "RelativeDocumentMoniker": "GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
+              "ToolTip": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
+              "RelativeToolTip": "GestionTareas\\DataAccessLayer\\GestionTareas.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T03:40:33.264Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "GestionTareas.dbml",
-              "DocumentMoniker": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.dbml",
+              "DocumentMoniker": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.dbml",
               "RelativeDocumentMoniker": "GestionTareas\\DataAccessLayer\\GestionTareas.dbml",
-              "ToolTip": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.dbml",
+              "ToolTip": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\DataAccessLayer\\GestionTareas.dbml",
               "RelativeToolTip": "GestionTareas\\DataAccessLayer\\GestionTareas.dbml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
-              "WhenOpened": "2025-04-09T23:28:02.847Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T03:40:33.286Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\Views\\Home\\Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "GestionTareas\\Views\\Home\\Index.cshtml",
-              "ToolTip": "C:\\Users\\l_car\\source\\repos\\HectorRec\\GestionTareas\\GestionTareas\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Maximiliano\\Documents\\Metodolog\u00EDas Proyecto Final\\GestionTareas\\GestionTareas\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "GestionTareas\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-03T01:47:52.36Z",
+              "WhenOpened": "2025-05-02T03:40:33.412Z",
               "EditorCaption": ""
             }
           ]
