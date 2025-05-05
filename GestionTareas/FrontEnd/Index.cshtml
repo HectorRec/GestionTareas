@@ -1,0 +1,120 @@
+﻿@page
+@model FrontGestionTareas.Pages.TareasModel
+@{
+    ViewData["Title"] = "Gestión de Tareas";
+}
+
+<h1>Gestión de Tareas</h1>
+
+<form method="post" class="mb-4">
+
+    <div class="mb-2 w-50">
+        <input asp-for="NuevaTarea.titulo" class="form-control" placeholder="Título" />
+        <span asp-validation-for="NuevaTarea.titulo" class="text-danger"></span>
+
+    </div>
+
+    <div class="mb-2 w-50">
+        <textarea asp-for="NuevaTarea.descripcion" class="form-control" placeholder="Descripción"></textarea>
+    </div>
+
+    <div class="mb-2 d-flex align-items-end gap-2">
+        <div>
+            <label class="form-label">Fecha límite</label>
+            <input type="date" name="fecha_limite" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+
+        <div>
+            <label class="form-label">Hora límite</label>
+            <input type="time" name="hora_limite" class="form-control" value="@DateTime.Now.ToString("HH:mm")" />
+            <span asp-validation-for="NuevaTarea.fecha_limite" class="text-danger"></span>
+
+        </div>
+    </div>
+
+    <div class="mb-2 w-25">
+        <input asp-for="NuevaTarea.prioridad" type="number" min="1" max="5"
+               class="form-control" placeholder="Prioridad (1 a 5)" />
+    </div>
+
+    <button type="submit" asp-page-handler="Agregar" class="btn btn-success">Agregar Tarea</button>
+</form>
+
+@if (Model.ListaTareas.Any())
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Fecha creación</th>
+                <th>Fecha límite</th>
+                <th>Estado</th>
+                <th>Prioridad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var tarea in Model.ListaTareas)
+            {
+                if (Model.TareaIdEnEdicion == tarea.ID)
+                {
+                    <tr>
+                        <form method="post" asp-page-handler="EditarAsync">
+                            <input type="hidden" name="TareaEditada.ID" value="@tarea.ID" />
+                        <td><input type="text" name="TareaEditada.titulo" value="@tarea.titulo" class="form-control" /></td>
+                        <td><textarea name="TareaEditada.descripcion" class="form-control">@tarea.descripcion</textarea></td>
+                        <td>@tarea.fecha_creacion.ToShortDateString()</td>
+                        <td>
+                            <input type="date" name="fecha_limite" value="@tarea.fecha_limite.ToString("yyyy-MM-dd")" class="form-control" />
+                            <input type="time" name="hora_limite" value="@tarea.fecha_limite.ToString("HH:mm")" class="form-control" />
+                        </td>
+                        <td>
+                            <select name="TareaEditada.estado" class="form-select">
+                                    
+                            </select>
+                        </td>
+                        <td><input type="number" name="TareaEditada.prioridad" value="@tarea.prioridad" min="1" max="5" class="form-control" /></td>
+                        <td>
+                            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+                        </td>
+                        </form>
+                    </tr>
+                }
+                else
+                {
+                    <tr>
+                        <td>@tarea.titulo</td>
+                        <td>@tarea.descripcion</td>
+                        <td>@tarea.fecha_creacion.ToShortDateString()</td>
+                        <td>@tarea.fecha_limite.ToShortDateString()</td>
+                        <td>@tarea.estado</td>
+                        <td>@tarea.prioridad</td>
+                        <td>
+                            <form method="post" asp-page-handler="IniciarEdicion" class="d-inline">
+                                <input type="hidden" name="id" value="@tarea.ID" />
+                                <button class="btn btn-primary btn-sm">Editar</button>
+                            </form>
+                            <form method="post" asp-page-handler="Eliminar" class="d-inline">
+                                <input type="hidden" name="id" value="@tarea.ID" />
+                                <button class="btn btn-danger btn-sm">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+
+
+
+}
+else
+{
+    <p class="text-muted">No hay tareas registradas.</p>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
