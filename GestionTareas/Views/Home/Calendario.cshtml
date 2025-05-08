@@ -1,0 +1,62 @@
+﻿@page
+@model FrontGestionTareas.Pages.CalendarioModel
+@{
+    ViewData["Title"] = "Calendario";
+}
+
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet" />
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+
+<h1>Calendario de prueba</h1>
+
+
+<!-- Panel de Descripción -->
+<div id="descripcionPanel" class="col-md-4" style="display:none; position: fixed; top: 50px; right: 0; width: 300px; height: 90vh; background-color: #f8f9fa; border-left: 2px solid #ccc; padding: 20px; box-shadow: -2px 0 5px rgba(0,0,0,0.1); overflow-y: auto;">
+    <h4 id="descripcionTitulo"></h4>
+    <p id="descripcionContenido"></p>
+
+    <button id="cerrarPanel" class="btn btn-secondary" style="position: absolute; top: 10px; right: 10px;">Cerrar</button>
+
+</div>
+
+
+
+
+<!-- Contenedor con altura -->
+<div id="calendar" style="height: 600px; margin-top: 20px;"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: '/Calendario?handler=Tasks',
+            eventClick: function(info) {
+                // Obtener título y descripción
+                var titulo = info.event.title;
+                var descripcion = info.event.extendedProps.descripcion;
+
+                // Mostrar el título y la descripción en el panel
+                document.getElementById('descripcionTitulo').innerText =  titulo;
+                document.getElementById('descripcionContenido').innerText = descripcion;
+
+                // Hacer visible el panel
+                document.getElementById('descripcionPanel').style.display = 'block';
+            }
+        });
+        calendar.render();
+    });
+
+
+        document.getElementById('cerrarPanel').addEventListener('click', function() {
+        document.getElementById('descripcionPanel').style.display = 'none';
+    });
+
+
+</script>
+
+
+
