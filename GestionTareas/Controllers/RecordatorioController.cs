@@ -12,16 +12,16 @@ namespace GestionTareas.Controllers
         GestionTareasDataContext DB = new GestionTareasDataContext();
 
         //Listar
-        public ActionResult Listar(DateTime? fecha = null)
-        {
-            fecha ??= DateTime.Today;
+        //public ActionResult Listar(DateTime? fecha = null)
+        //{
+        //    //fecha ??= DateTime.Today;
 
-                                  .Where(r => r.FechaAviso.Date == fecha.Value.Date)
-                                  .ToList();
+        //    //                      .Where(r => r.FechaAviso.Date == fecha.Value.Date)
+        //    //                      .ToList();
 
-            ViewBag.Fecha = fecha.Value;
-            return View(recordatorios);
-        }
+        //    //ViewBag.Fecha = fecha.Value;
+        //    //return View(recordatorios);
+        //}
 
         //Crear
         public ActionResult Crear()
@@ -41,7 +41,7 @@ namespace GestionTareas.Controllers
                 return RedirectToAction("Listar");
             }
 
-            ViewBag.Tareas = new SelectList(DB.Tareas, "IdTarea", "Titulo", nuevoRecordatorio.IdTarea);
+            ViewBag.Tareas = new SelectList(DB.Tareas, "IdTarea", "Titulo", nuevoRecordatorio.ID_Tarea);
             return View(nuevoRecordatorio);
         }
     }
