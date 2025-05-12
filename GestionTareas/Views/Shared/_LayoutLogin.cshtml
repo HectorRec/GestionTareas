@@ -1,0 +1,25 @@
+﻿@* Views/Shared/_LayoutLogin.cshtml *@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - Planify</title>
+    <link rel="stylesheet" href="@Url.Content("~/Lib/Plantilla/template/assets/vendors/mdi/css/materialdesignicons.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Lib/Plantilla/template/assets/vendors/css/vendor.bundle.base.css")">
+    @RenderSection("PluginStyles", required: false)
+    <link rel="stylesheet" href="@Url.Content("~/Lib/Plantilla/template/assets/css/style.css")">
+    <link rel="shortcut icon" href="@Url.Content("~/Lib/Plantilla/template/assets/images/favicon.png")" />
+</head>
+<body>
+    @RenderBody()
+    <script src="@Url.Content("~/Lib/Plantilla/template/assets/vendors/js/vendor.bundle.base.js")"></script>
+    @RenderSection("PluginScripts", required: false)
+    <script src="@Url.Content("~/Lib/Plantilla/template/assets/js/off-canvas.js")"></script>
+    <script src="@Url.Content("~/Lib/Plantilla/template/assets/js/hoverable-collapse.js")"></script>
+    <script src="@Url.Content("~/Lib/Plantilla/template/assets/js/misc.js")"></script>
+    <script src="@Url.Content("~/Lib/Plantilla/template/assets/js/settings.js")"></script>
+    <script src="@Url.Content("~/Lib/Plantilla/template/assets/js/todolist.js")"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

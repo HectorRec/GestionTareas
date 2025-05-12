@@ -1,134 +1,88 @@
-﻿@{
-    ViewBag.Title = "Login";
-    Layout = null; // Si no usas Layout principal
+﻿@* Views/Usuarios/Login.cshtml (o donde la tengas, ej. Views/Account/Login.cshtml) *@
+@{
+    ViewBag.Title = "Iniciar Sesión";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml"; // O el layout que estés usando para login
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Bootstrap CSS (versión 5.3 recomendada) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ZX/Y6Ic5B+DJnFg+mrUbaD8ZYFqHoP6zMof7G9MoK6Wz1ho5qCWvG5nMNafVcP4U" crossorigin="anonymous">
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="row w-100 m-0">
+            <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
+                <div class="card col-lg-4 mx-auto">
+                    <div class="card-body px-5 py-5">
+                        <h3 class="card-title text-left mb-3">Login</h3>
 
-    <!-- Bootstrap JS (con Popper.js incluido) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HoZKvWRFY1h2QOcCzCqg2aTrHtA2oBhN2r9twbHh1HPmRTvXVa6TfQ/Y+6jCz9fO" crossorigin="anonymous"></script>
-    <link href="~/Lib/static_unminified/style.css" rel="stylesheet" />
+                        @* Mensaje de error del controlador *@
+                        @if (ViewBag.Mensaje != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ViewBag.Mensaje
+                            </div>
+                        }
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <title>Sign In</title>
-    <style>
-        /* Aquí va tu estilo original */
-        #loader {
-            transition: all 0.3s ease-in-out;
-            opacity: 1;
-            visibility: visible;
-            position: fixed;
-            height: 100vh;
-            width: 100%;
-            background: #fff;
-            z-index: 90000;
-        }
+                        @using (Html.BeginForm("Login", "Usuarios", FormMethod.Post, new { id = "loginForm" }))
+                        {
+                            @Html.AntiForgeryToken() // Importante para seguridad
 
-            #loader.fadeOut {
-                opacity: 0;
-                visibility: hidden;
-            }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            position: absolute;
-            top: calc(50% - 20px);
-            left: calc(50% - 20px);
-            background-color: #333;
-            border-radius: 100%;
-            -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
-            animation: sk-scaleout 1.0s infinite ease-in-out;
-        }
-
-        @@-webkit-keyframes sk-scaleout {
-            0% {
-                -webkit-transform: scale(0)
-            }
-
-            100% {
-                -webkit-transform: scale(1.0);
-                opacity: 0;
-            }
-        }
-
-        @@keyframes sk-scaleout {
-            0% {
-                -webkit-transform: scale(0);
-                transform: scale(0);
-            }
-
-            100% {
-                -webkit-transform: scale(1.0);
-                transform: scale(1.0);
-                opacity: 0;
-            }
-        }
-    </style>
-    <script defer="defer" src="~/Scripts/main.js"></script>
-    <link href="~/Content/style.css" rel="stylesheet" />
-</head>
-<body class="app">
-    <div id="loader">
-        <div class="spinner"></div>
-    </div>
-
-    <script>
-        window.addEventListener('load', function load() {
-            const loader = document.getElementById('loader');
-            setTimeout(function () {
-                loader.classList.add('fadeOut');
-            }, 300);
-        });
-    </script>
-
-    <div class="peers ai-s fxw-nw h-100vh">
-        <div class="d-n@sm- peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv"
-             style='background-image: url("@Url.Content("~/lib/static_unminified/bg.jpg")")'>
-            <div class="pos-a centerXY">
-                <div class="bgc-white bdrs-50p pos-r" style="width: 120px; height: 120px;">
-                    <img class="pos-a centerXY" src="@Url.Content("~/lib/static_unminified/logo.png")" alt="">
+                            <div class="form-group">
+                                <label for="correo">Usuario o email *</label>
+                                <input type="email" name="correo" id="correo" class="form-control p_input" required>
+                                @Html.ValidationMessage("correo", "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label for="contrasena">Contraseña *</label>
+                                <input type="password" name="contrasena" id="contrasena" class="form-control p_input" required>
+                                @Html.ValidationMessage("contrasena", "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group d-flex align-items-center justify-content-between">
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="RememberMe" class="form-check-input" value="true"> Recordarme
+                                    </label>
+                                </div>
+                                <a href="@Url.Action("ForgotPassword", "Usuarios")" class="forgot-pass">¿Olvidaste tu contraseña?</a>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                            </div>
+                        }
+                        <div class="d-flex mt-3">
+                            @* Separado del form principal para claridad *@
+                            <button class="btn btn-facebook mr-2 col">
+                                <i class="mdi mdi-facebook"></i> Facebook
+                            </button>
+                            <button class="btn btn-google col">
+                                <i class="mdi mdi-google-plus"></i> Google plus
+                            </button>
+                        </div>
+                        <p class="sign-up mt-3">¿No tienes una cuenta?<a href="@Url.Action("Register", "Usuarios")"> Regístrate</a></p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r" style="min-width: 320px;">
-            <h4 class="fw-300 c-grey-900 mB-40">Login</h4>
-
-            @if (ViewBag.Mensaje != null)
-            {
-                <div class="alert alert-danger">@ViewBag.Mensaje</div>
-            }
-
-            @using (Html.BeginForm("Login", "Usuarios", FormMethod.Post))
-            {
-                <div class="mb-3">
-                    <label class="text-normal text-dark form-label">Username</label>
-                    @Html.TextBox("correo", null, new { @class = "form-control", placeholder = "Correo" })
-                </div>
-                <div class="mb-3">
-                    <label class="text-normal text-dark form-label">Password</label>
-                    @Html.Password("contrasena", null, new { @class = "form-control", placeholder = "Contraseña" })
-                </div>
-                <div class="peers ai-c jc-sb fxw-nw">
-                    <div class="peer">
-                        <div class="checkbox checkbox-circle checkbox-info peers ai-c">
-                            <input type="checkbox" id="inputCall1" class="peer" />
-                            <label for="inputCall1" class="peers peer-greed js-sb ai-c form-label">
-                                <span class="peer peer-greed">Recordarme</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="peer">
-                        <button type="submit" class="btn btn-primary btn-color">Login</button>
-                    </div>
-                </div>
-            }
-        </div>
     </div>
-</body>
-</html>
+</div>
+
+@section scripts {
+    @* Si usas jQuery Validate para validación del lado del cliente más robusta *@
+    @* <script src="~/Scripts/jquery.validate.min.js"></script> *@
+    @* <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script> *@
+    <script>
+        // Validación simple de cliente para espacios (opcional, la del servidor es más importante)
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            var correoInput = document.getElementById('correo');
+            if (correoInput.value !== correoInput.value.trim()) {
+                // Podrías mostrar un mensaje o simplemente trim aquí,
+                // pero el servidor ya lo hace con Trim().
+                // alert("El correo no debe tener espacios al inicio o al final.");
+                // event.preventDefault(); // Para detener el envío si quieres
+            }
+            // No permitir solo espacios en contraseña (ejemplo)
+            var contrasenaInput = document.getElementById('contrasena');
+            if (contrasenaInput.value.trim() === '' && contrasenaInput.value.length > 0) {
+                alert("La contraseña no puede ser solo espacios.");
+                event.preventDefault();
+            }
+        });
+    </script>
+}
