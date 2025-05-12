@@ -1,7 +1,7 @@
 ﻿@* Views/Shared/_Sidebar.cshtml *@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-        <a class="sidebar-brand brand-logo" href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Lib/Plantilla/template/assets/images/logo.svg")" alt="logo" /></a>
+        <a class="sidebar-brand brand-logo" href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Lib/Plantilla/template/assets/images/PLANIFY.png")" alt="logo"style="height:100%" /></a>
         <a class="sidebar-brand brand-logo-mini" href="@Url.Action("Index", "Home")"><img src="@Url.Content("~/Lib/Plantilla/template/assets/images/logo-mini.svg")" alt="logo" /></a>
     </div>
     <ul class="nav">
@@ -54,17 +54,25 @@
             </div>
         </li>
         <li class="nav-item nav-category">
-            <span class="nav-link">Navigation</span>
+            <span class="nav-link">Navegacion</span>
         </li>
         <li class="nav-item menu-items">
-            <a class="nav-link" href="@Url.Action("Index", "Dashboard")">
+            <a class="nav-link" href="@Url.Action("Index", "Home")">
                 <span class="menu-icon">
                     <i class="mdi mdi-speedometer"></i>
                 </span>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Inicio</span>
             </a>
         </li>
         <li class="nav-item menu-items">
+            <a class="nav-link" href="@Url.Action("Calendario", "Calendario")">
+                <span class="menu-icon">
+                    <i class="mdi mdi-table-large"></i>
+                </span>
+                <span class="menu-title">Calendario</span>
+            </a>
+        </li>
+        @*<li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
                     <i class="mdi mdi-laptop"></i>
@@ -137,6 +145,6 @@
                 </span>
                 <span class="menu-title">Documentation</span>
             </a>
-        </li>
+        </li>*@
     </ul>
 </nav>

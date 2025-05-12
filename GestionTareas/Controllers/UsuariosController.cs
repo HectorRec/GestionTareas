@@ -57,7 +57,7 @@ namespace GestionTareas.Controllers
             // Si el usuario ya está autenticado, quizás redirigirlo a Home/Index
             if (Session["UsuarioID"] != null)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Calendario", "Calendario");
             }
             return View();
         }
@@ -103,7 +103,7 @@ namespace GestionTareas.Controllers
                     // usuario.FechaUltimoLogin = DateTime.Now;
                     // db.SubmitChanges();
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Calendario", "Calendario");
                 }
                 else
                 {

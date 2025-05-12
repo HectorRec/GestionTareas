@@ -1,0 +1,181 @@
+﻿@* Views/Home/Calendario.cshtml *@
+@{
+    // ViewBag.Title ya fue establecido en el controlador
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Usamos tu layout principal
+}
+
+
+@* Sección para estilos CSS específicos de plugins (FullCalendar CSS) *@
+@section PluginStyles {
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/main.min.css" rel="stylesheet">
+    @* Si tu plantilla Corona Admin tiene un estilo específico para FullCalendar, podrías referenciarlo aquí también *@
+}
+
+<style>
+     .fc .fc-button-primary:hover {
+        background-color: var(--fc-button-hover-bg-color) !important;
+        border-color: var(--fc-button-hover-border-color);
+        color: var(--fc-button-text-color);
+    }
+    .fc .fc-button-group .fc-button {
+        background-color: #2e4256;
+            margin: 0;
+    }
+                      
+</style>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div id="calendar" class="bcC"></div> @* Este es el div donde FullCalendar se renderizará *@
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Sección para scripts específicos de plugins y la inicialización de FullCalendar *@
+@section scripts {
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                // --- CONFIGURACIÓN BÁSICA ---
+                initialView: 'dayGridMonth', // Vista inicial (mes)
+                locale: 'es', // Establecer el idioma a Español
+                headerToolbar: { // Botones y título en la cabecera
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                buttonText: { // Personalizar texto de botones si es necesario (ya viene con la localización 'es')
+                    today:    'Hoy',
+                    month:    'Mes',
+                    week:     'Semana',
+                    day:      'Día',
+                    list:     'Lista'
+                },
+                // height: 'auto', // O un valor fijo como 650
+                // contentHeight: 600, // Altura del contenido del calendario
+                aspectRatio: 1.8, // Relación de aspecto, ajustar según necesidad
+
+                // --- MANEJO DE EVENTOS ---
+                editable: true,     // Permite arrastrar y redimensionar eventos (requiere lógica en servidor para guardar cambios)
+                selectable: true,   // Permite seleccionar rangos de fechas/horas
+                selectMirror: true,
+                dayMaxEvents: true, // Cuando hay muchos eventos, muestra un enlace "+n más"
+
+                // --- EJEMPLO DE EVENTOS ESTÁTICOS ---
+                // Reemplaza esto con una fuente de eventos dinámica (ver más abajo)
+                events: [
+                    {
+                        title: 'Reunión de Planificación',
+                        start: '@DateTime.Now.ToString("yyyy-MM-dd")T10:00:00', // Hoy a las 10:00 AM
+                        end: '@DateTime.Now.ToString("yyyy-MM-dd")T11:30:00',
+                        backgroundColor: '#007bff', // Azul
+                        borderColor: '#007bff'
+                    },
+                    {
+                        title: 'Entrega Reporte Anual',
+                        start: '@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")', // Dentro de 3 días (todo el día)
+                        allDay: true,
+                        backgroundColor: '#dc3545', // Rojo
+                        borderColor: '#dc3545'
+                    },
+                    {
+                        title: 'Almuerzo con Cliente JKL',
+                        start: '@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")T13:00:00',
+                        end: '@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")T14:00:00',
+                        backgroundColor: '#28a745', // Verde
+                        borderColor: '#28a745',
+                        extendedProps: { // Propiedades personalizadas
+                            department: 'Ventas'
+                        }
+                    }
+                ],
+            eventSources: [
+    {
+        url: '@Url.Action("GetEventosCalendario", "Calendario")', // Verifica controlador "Tareas"
+        method: 'GET', // CAMBIADO A GET
+        failure: function(jqXHR, textStatus, errorThrown) { // Callback para errores
+            console.error("Error al cargar eventos FullCalendar:");
+            console.error("Status: " + textStatus);
+            console.error("Error: " + errorThrown);
+            console.error("Response Text (si existe):", jqXHR.responseText); // Muestra la respuesta del servidor si hubo error
+            alert('¡Hubo un error al cargar los eventos del calendario! Revisa la consola del navegador (F12).');
+        },
+        success: function(data) { // Callback opcional para ver datos exitosos
+            console.log('Eventos cargados exitosamente:', data);
+        }
+        // color: 'blue', // Puedes establecer propiedades por defecto para esta fuente
+        // textColor: 'white'
+    }
+],
+
+
+                // --- CALLBACKS (ACCIONES) ---
+                select: function(info) {
+                    // Se dispara cuando el usuario selecciona un rango de fechas/horas
+                    var title = prompt('Introduce el título para el nuevo evento:');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: info.startStr,
+                            end: info.endStr,
+                            allDay: info.allDay,
+                            backgroundColor: '#ffc107', // Amarillo para eventos creados por el usuario
+                            borderColor: '#ffc107'
+                        });
+                        // Aquí deberías enviar este nuevo evento al servidor para guardarlo
+                        // Ejemplo: console.log("Nuevo evento para guardar:", { title: title, start: info.startStr, end: info.endStr, allDay: info.allDay });
+                    }
+                    calendar.unselect(); // Limpiar la selección
+                },
+
+                eventClick: function(info) {
+                    // Se dispara cuando se hace clic en un evento
+                    alert('Evento: ' + info.event.title + '\nDescripción: ' + (info.event.extendedProps.department || 'N/A'));
+
+                    // Prevenir que se siga el href si el evento tiene una URL
+                    // info.jsEvent.preventDefault();
+
+                    // Ejemplo de cómo podrías eliminar un evento (requiere confirmación y lógica en servidor)
+                    if (confirm("¿Realmente deseas eliminar el evento '" + info.event.title + "'?")) {
+                        info.event.remove();
+                        // Aquí deberías enviar la petición al servidor para eliminar el evento de la BD
+                        // Ejemplo: console.log("Evento para eliminar:", info.event.id);
+                    }
+                },
+
+                eventDrop: function(info) {
+                    // Se dispara cuando un evento es arrastrado y soltado en una nueva fecha/hora
+                    // alert(info.event.title + " fue movido a " + info.event.start.toISOString());
+                    // Aquí deberías enviar la actualización al servidor
+                    // Ejemplo: console.log("Evento para actualizar (Drop):", { id: info.event.id, start: info.event.startStr, end: info.event.endStr, allDay: info.event.allDay });
+                    if (!confirm("¿Estás seguro de este cambio?")) {
+                        info.revert(); // Deshacer el cambio si el usuario cancela
+                    }
+                },
+
+                eventResize: function(info) {
+                    // Se dispara cuando un evento es redimensionado
+                    // alert(info.event.title + " finaliza ahora en " + info.event.end.toISOString());
+                    // Aquí deberías enviar la actualización al servidor
+                    // Ejemplo: console.log("Evento para actualizar (Resize):", { id: info.event.id, start: info.event.startStr, end: info.event.endStr, allDay: info.event.allDay });
+                    if (!confirm("¿Estás seguro de este cambio?")) {
+                        info.revert();
+                    }
+                }
+
+                // --- FUENTE DE EVENTOS DESDE EL SERVIDOR (EL SIGUIENTE PASO) ---
+
+
+            });
+
+            calendar.render(); // ¡Importante! Renderiza el calendario
+        });
+    </script>
+}
